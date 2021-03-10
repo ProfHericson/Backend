@@ -1,4 +1,6 @@
 const express = require('express');
+const UserController = require('../controller/User')
+
 const routes = express.Router();
 
 //GET ==> Usado somente para buscar informação (no maximo, mandar alguma query) -- Select
@@ -7,28 +9,13 @@ const routes = express.Router();
 //DELETE ==> Usado para exclusão.... parametro sao via query --- Delete
 
 routes.get('/', (req, res) => {
-  return res.json({mensage : "pagina principal"})
+  return res.json({message : "pagina principal"})
 }); 
 
-routes.get('/produtos', (req, res) =>{
-  return res.json({messagem : 'Rota de todos os Produtos'})
-});
-
-routes.post('/produtos', (req, res) =>{
-  var produto = req.body.produto;
-  return res.json({messagem : 'AddoProdut ' + produto.nome})
-});
-
-routes.put('/produtos', (req, res) =>{
-  var id = req.query.id;
-  var produto = req.body.produto;
-  return res.json({messagem : 'Atualizar o produt ' + id +'com os dados do post'+ produto.nome})
-});
-
-routes.delete('/produtos', (req, res) =>{
-  var id = req.query.id;
-  return res.json({messagem : 'deleta o produto ' + id})
-});
+routes.get('/user',UserController.index);
+routes.post('/user',UserController.store);
+routes.put('/user', UserController.update);
+routes.delete('/user', UserController.delete);
 
 //#Exercisio... 
 //Criar Rotar para Clientes e Pedidos
