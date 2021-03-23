@@ -1,5 +1,6 @@
 const express = require('express');
 const UserController = require('../controller/User')
+const CidadeController = require('../controller/Cidade')
 
 const routes = express.Router();
 
@@ -12,12 +13,15 @@ routes.get('/', (req, res) => {
   return res.json({message : "pagina principal"})
 }); 
 
-routes.get('/user',UserController.index);
-routes.post('/user',UserController.store);
-routes.put('/user', UserController.update);
-routes.delete('/user', UserController.delete);
+routes.get('/user',UserController.index)
+routes.post('/user',UserController.store)
+routes.put('/user', UserController.update)
+routes.delete('/user', UserController.delete)
 
 //#Exercisio... 
 //Criar Rotar para Clientes e Pedidos
 
 module.exports = routes;
+
+//yarn remove mongoose
+//yar add mongoose@5.12.1
