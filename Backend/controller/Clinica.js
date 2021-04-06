@@ -26,7 +26,7 @@ module.exports = {
     
     var id = req.query.id;
     let clinica = await Clinica.findById(id);
-    clinica = await Clinica.deleteOne(clinica);
+    clinica = await Clinica.deleteOne({'_id': req.query.id} , clinica);
 
     return res.json(clinica);
     

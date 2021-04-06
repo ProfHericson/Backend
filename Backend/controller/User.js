@@ -24,7 +24,8 @@ module.exports = {
     user.email = req.body.email;
     user.age = req.body.age;
     user.password = req.body.password;
-    user = await User.update(user);
+    user = await User.updateOne({'_id': req.query.id} , user)
+
     return res.json({messagem : 'Atualizar o user ' + id +' com os dados do post '+ user.name})
   },
    
@@ -32,7 +33,6 @@ module.exports = {
     var id = req.query.id;
     let user = await User.findById(id);
     user = await User.deleteOne(user);
-
     return res.json(user);
     
   }
